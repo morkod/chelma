@@ -229,7 +229,7 @@ func (c *ReadyChecker) podsforObject(ctx context.Context, namespace string, obj 
 // isPodReady returns true if a pod is ready; false otherwise.
 func (c *ReadyChecker) isPodReady(pod *corev1.Pod) bool {
 	for _, c := range pod.Status.Conditions {
-		if c.Type == corev1.PodReady && c.Status == corev1.ConditionTrue {
+		if (c.Type == corev1.PodReady || c.Type == corev1.PodSucceded) && c.Status == corev1.ConditionTrue {
 			return true
 		}
 	}
